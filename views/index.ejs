@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <h1>Url Site</h1>
+    <h1 id = "table">
+        <% bookmark.map((bookmark, index) => { %>
+        <div id="bookmark-<%= index %>">
+        <p>Name: <%= bookmark.name %></p>
+        <a href="<%= bookmark.url %>"><%= bookmark.url %></a>
+        </div>
+        <form action="/bookmark/<%= bookmark.id%>?_method=PUT" method="post">
+            <input type="text" name="editn" placeholder="edit name">
+            <input type="text" name="editu" placeholder="edit url">
+            <input id = "bookmark-<%= index %>-edit" type="submit" value="edit">
+        </form>
+        
+        <form action="/comment/<%= bookmark.id%>" method = "post">
+            <input id = "description" type="text" name="description" placeholder="description">
+            <input id = "description-submit" type="submit" value="submit description">
+        </form>
+        <div id = "descriptiontext"><% bookmark.comments.forEach((comment, commentIndex) => { %>
+            <span style = "font-size: xx-small;"><%= comment.description %></span><br>
+
+            <% }) %>
+        </div>
+        <form action="/bookmark/<%= bookmark.id %>?_method=DELETE" method="post">
+            <input id = "bookmark-<%= index %>-delete" type="submit" value="delete">
+        </form>
+        <% }) %>
+
+    </h1>
+        
+
+        <form action="/" method="post">
+            <input id="name" type="text" name="name" placeholder="name">
+            <input id="url" type="text" name="url" placeholder="url">
+            <input id="submit" type="submit" value="Submit your bookmark">
+        </form>
+</body>
+
+</html>

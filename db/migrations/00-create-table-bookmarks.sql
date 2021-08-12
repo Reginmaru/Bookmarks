@@ -1,0 +1,5 @@
+CREATE TABLE bookmarks(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(60),
+  url VARCHAR(60)
+)
